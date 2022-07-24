@@ -8,7 +8,12 @@ app.use(express.json());
 app.use(cors({
     origin: 'http://localhost:8080',
     credentials: true,
-}))
+    },
+    {
+    origin: 'https://fhirfly.vercel.app',
+    credentials: true,
+    }         
+ ))
 
 app.use(Session({
     name: 'siwe-quickstart',
