@@ -6,9 +6,12 @@ import { generateNonce, SiweMessage } from 'siwe';
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: '*',
-    credentials: true,
-}))
+  origin: function(origin, callback){
+    return callback(null, true);
+  },
+  optionsSuccessStatus: 200,
+  credentials: true
+}));
 
 app.use(Session({
     name: 'siwe-quickstart',
