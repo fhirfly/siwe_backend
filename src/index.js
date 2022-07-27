@@ -6,7 +6,7 @@ import { generateNonce, SiweMessage } from 'siwe';
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:8080',
+    origin: '*',
     credentials: true,
 }))
 
