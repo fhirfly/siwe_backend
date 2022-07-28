@@ -39,6 +39,9 @@ app.post('/verify', async function (req, res) {
         if (fields.nonce !== req.session.nonce) {
             console.log("invalid nonce.");
             console.debug("Request Session: " + req.session);
+            console.debug("Request Signature: " + req.body.signature);
+            console.debug("Request Session Nonce: " + req.session.nonce);
+            console.debug("Request Session: " + req.session);
             res.status(422).json({
                 message: `Invalid nonce.`,
             });
