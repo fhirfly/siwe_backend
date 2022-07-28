@@ -37,7 +37,8 @@ app.post('/verify', async function (req, res) {
         let message = new SiweMessage(req.body.message);
         const fields = await message.validate(req.body.signature);
         if (fields.nonce !== req.session.nonce) {
-            console.log(req.session);
+            console.log("invalid nonce.");
+            console.debug("Request Session: " + req.session);
             res.status(422).json({
                 message: `Invalid nonce.`,
             });
