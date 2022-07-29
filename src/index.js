@@ -38,10 +38,11 @@ app.post('/verify', async function (req, res) {
         const fields = await message.validate(req.body.signature);
         if (fields.nonce !== req.session.nonce) {
             console.log("invalid nonce.");
-            console.debug("Request Session: " + req.session);
+            //console.debug("Request Session: " + req.session);
             console.debug("Request Signature: " + req.body.signature);
             console.debug("Request Session Nonce: " + req.session.nonce);
-            console.debug("Request Session: " + req.session);
+            console.debug("Fields Nonce: " + fields.nonce)
+            console.debug("Request Body Message: " + req.body.message);
             res.status(422).json({
                 message: `Invalid nonce.`,
             });
