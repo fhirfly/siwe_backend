@@ -3,10 +3,8 @@ import express from 'express';
 import Session from 'express-session';
 import { generateNonce, SiweMessage } from 'siwe';
 import connectRedis from 'connect-redis';
-let RedisStore = connectRedis(session);
-
-// redis@v4
 import createClient from 'redis';
+let RedisStore = connectRedis(Session);
 
 const REDISHOST = process.env.REDISHOST || 'localhost';
 const REDISPORT = process.env.REDISPORT || 6379;
@@ -24,7 +22,7 @@ app.use(cors({
 }));
 
 app.use(
-    session({
+    Session({
       store: new RedisStore({ client: redisClient }),
       saveUninitialized: false,
       secret: "keyboard cat try me",
