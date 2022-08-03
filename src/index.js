@@ -6,7 +6,7 @@ import connectRedis from 'connect-redis';
 import Redis from 'redis';
 let RedisStore = connectRedis(Session);
 
-const REDISHOST = process.env.REDISHOST || 'localhost';
+const REDISHOST = process.env.REDISHOST || '10.13.153.171';
 const REDISPORT = process.env.REDISPORT || 6379;
 let redisClient = Redis.createClient(REDISPORT, REDISHOST);
 redisClient.connect().catch(console.error)
