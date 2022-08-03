@@ -1,6 +1,6 @@
 import cors from 'cors';
 import express from 'express';
-import Session from 'express-session';
+import Session from 'cookie-session';
 import { generateNonce, SiweMessage } from 'siwe';
 
 const app = express();
