@@ -3,12 +3,12 @@ import express from 'express';
 import Session from 'express-session';
 import { generateNonce, SiweMessage } from 'siwe';
 import connectRedis from 'connect-redis';
-import createClient from 'redis';
+import Redis from 'redis';
 let RedisStore = connectRedis(Session);
 
 const REDISHOST = process.env.REDISHOST || 'localhost';
 const REDISPORT = process.env.REDISPORT || 6379;
-let redisClient = createClient(REDISPORT, REDISHOST);
+let redisClient = Redis.createClient(REDISPORT, REDISHOST);
 redisClient.connect().catch(console.error)
 
 const app = express();
