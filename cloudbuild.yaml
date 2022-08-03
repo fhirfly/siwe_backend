@@ -46,7 +46,7 @@ substitutions:
   _ENTRYPOINT: node src/index.js
   _REDISHOST: '10.13.153.171'
   _REDISPORT: '6379'
-  _CONNECTOR_NAME: default
+  _CONNECTOR_NAME: siwe-redis
 tags:
   - gcp-cloud-build-deploy-cloud-run
   - gcp-cloud-build-deploy-cloud-run-managed
