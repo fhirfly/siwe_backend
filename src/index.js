@@ -1,6 +1,6 @@
 import cors from 'cors';
 import express from 'express';
-import Session from 'epxress-session';
+import Session from 'express-session';
 import { generateNonce, SiweMessage } from 'siwe';
 let RedisStore = require("connect-redis")(session)
 
