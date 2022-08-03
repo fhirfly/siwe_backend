@@ -2,10 +2,12 @@ import cors from 'cors';
 import express from 'express';
 import Session from 'express-session';
 import { generateNonce, SiweMessage } from 'siwe';
-let RedisStore = require("connect-redis")(session)
+import connectRedis from 'connect-redis';
+let RedisStore = connectRedis(session);
 
 // redis@v4
-const { createClient } = require("redis")
+import createClient from 'redis';
+
 const REDISHOST = process.env.REDISHOST || 'localhost';
 const REDISPORT = process.env.REDISPORT || 6379;
 let redisClient = createClient(REDISPORT, REDISHOST);
