@@ -28,6 +28,7 @@ steps:
         --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS
       - '--region=$_DEPLOY_REGION'
       - '--quiet'
+      - '--vpc-connector=$_CONNECTOR_NAME'
       - '--set-env-vars=REDISHOST=$_REDISHOST,REDISPORT=$_REDISPORT'
     id: Deploy
     entrypoint: gcloud
@@ -45,6 +46,7 @@ substitutions:
   _ENTRYPOINT: node src/index.js
   _REDISHOST: '10.13.153.171'
   _REDISPORT: '6379'
+  _CONNECTOR_NAME: default
 tags:
   - gcp-cloud-build-deploy-cloud-run
   - gcp-cloud-build-deploy-cloud-run-managed
