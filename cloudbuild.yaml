@@ -43,8 +43,8 @@ substitutions:
   _LABELS: gcb-trigger-id=2c155ef3-74dc-460b-b2ad-40083e48ad72
   _TRIGGER_ID: 2c155ef3-74dc-460b-b2ad-40083e48ad72
   _ENTRYPOINT: node src/index.js
-  _REDISHOST: 10.13.153.171
-  _REDISPORT: 6379
+  _REDISHOST: '10.13.153.171'
+  _REDISPORT: '6379'
 tags:
   - gcp-cloud-build-deploy-cloud-run
   - gcp-cloud-build-deploy-cloud-run-managed
