@@ -1,7 +1,15 @@
 import cors from 'cors';
 import express from 'express';
-import Session from 'cookie-session';
+import Session from 'epxress-session';
 import { generateNonce, SiweMessage } from 'siwe';
+let RedisStore = require("connect-redis")(session)
+
+// redis@v4
+const { createClient } = require("redis")
+const REDISHOST = process.env.REDISHOST || 'localhost';
+const REDISPORT = process.env.REDISPORT || 6379;
+let redisClient = createClient(REDISPORT, REDISHOST);
+redisClient.connect().catch(console.error)
 
 const app = express();
 app.use(express.json());
@@ -13,14 +21,15 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(Session({
-    name: 'siwe-quickstart',
-    secret: "siwe-quickstart-secret",
-    resave: true,
-    saveUninitialized: true,
-    cookie: { secure: true, sameSite: false }
-}));
-
+app.use(
+    session({
+      store: new RedisStore({ client: redisClient }),
+      saveUninitialized: false,
+      secret: "keyboard cat try me",
+      resave: false,
+    })
+  )
+  
 app.get('/nonce', async function (req, res) {
     req.session.nonce = generateNonce();
     res.setHeader('Content-Type', 'text/plain');
