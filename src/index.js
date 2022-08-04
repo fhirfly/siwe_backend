@@ -32,7 +32,7 @@ app.use(cors({
   credentials: true
 }));
 
-app.set('trust proxy', 1)
+app.set('trust proxy', true)
 
 /*app.use(
     Session({
@@ -52,7 +52,7 @@ app.use(
         maxAge: 24 * 60 * 60 * 100,
         secure: true,
         httpOnly: true,
-        sameSite: 'none'
+        SameSite: 'none'
     })
 );
 
