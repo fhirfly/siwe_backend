@@ -44,7 +44,7 @@ app.use(Session({
     secret: "siwe-quickstart-secret",
     resave: true,
     saveUninitialized: true,
-    cookie: { secure: true, sameSite: 'none' }
+    cookie: { secure: true, sameSite: 'None' }
 }));
 
 app.get('/nonce', async function (req, res) {
