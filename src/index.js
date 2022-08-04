@@ -27,6 +27,7 @@ app.use(
       saveUninitialized: false,
       secret: "keyboard cat try me",
       resave: false,
+      cookie: { secure: true, SameSite: 'none' }
     })
   )
   
