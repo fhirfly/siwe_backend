@@ -28,6 +28,9 @@ app.use(cors({
   credentials: true
 }));
 
+//var cookieSession = require("cookie-session");
+app.set('trust proxy', 1)
+
 /*app.use(
     Session({
       store: new RedisStore({ client: redisClient }),
