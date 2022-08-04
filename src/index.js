@@ -2,18 +2,18 @@ import cors from 'cors';
 import express from 'express';
 import Session from 'express-session';
 import { generateNonce, SiweMessage } from 'siwe';
-import connectRedis from 'connect-redis';
-import Redis from 'redis';
-let RedisStore = connectRedis(Session);
+//import connectRedis from 'connect-redis';
+//import Redis from 'redis';
+//let RedisStore = connectRedis(Session);
 
 //const REDISHOST = process.env.REDISHOST || '10.13.153.171';
 //const REDISPORT = process.env.REDISPORT || 6379;
 
-const REDISHOST = '10.13.153.171';
-const REDISPORT = 6379;
+//const REDISHOST = '10.13.153.171';
+//const REDISPORT = 6379;
 
-let redisClient = Redis.createClient(REDISPORT, REDISHOST);
-redisClient.connect().catch(console.error)
+//let redisClient = Redis.createClient(REDISPORT, REDISHOST);
+//redisClient.connect().catch(console.error)
 
 const app = express();
 app.use(express.json());
@@ -25,7 +25,7 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(
+/*app.use(
     Session({
       store: new RedisStore({ client: redisClient }),
       saveUninitialized: false,
@@ -34,7 +34,15 @@ app.use(
       cookie: { secure: true, SameSite: 'none' }
     })
   )
-  
+ */
+ app.use(Session({
+    name: 'siwe-quickstart',
+    secret: "siwe-quickstart-secret",
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: true, sameSite: false }
+}));
+
 app.get('/nonce', async function (req, res) {
     req.session.nonce = generateNonce();
     res.setHeader('Content-Type', 'text/plain');
