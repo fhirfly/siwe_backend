@@ -11,7 +11,7 @@ const REDISPORT = process.env.REDISPORT || 6379;
 
 let redisClient = Redis.createClient({socket: {
     host: REDISHOST,
-    port: REDISPORRT
+    port: REDISPORT
 }});
 
 redisClient.connect().catch(console.error)
