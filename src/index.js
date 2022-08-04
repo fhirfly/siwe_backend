@@ -65,6 +65,18 @@ app.use(
 }));
 */
 
+app.use(session({
+    key: 'session_cookie_user_auth',
+    secret: 'mooncore',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        SameSite: 'none',
+        maxAge: 1000 * 60 * 60 * 60
+    }
+}));
+
 app.get('/nonce', async function (req, res) {
     req.session.nonce = generateNonce();
     res.setHeader('Content-Type', 'text/plain');
