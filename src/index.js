@@ -1,6 +1,8 @@
 import cors from 'cors';
 import express from 'express';
 import Session from 'express-session';
+import cookieSession from 'cookie-session'
+
 import { generateNonce, SiweMessage } from 'siwe';
 /*
 import connectRedis from 'connect-redis';
@@ -18,6 +20,8 @@ let redisClient = Redis.createClient({socket: {
 redisClient.connect().catch(console.error)
 */
 
+
+
 const app = express();
 app.use(express.json());
 app.use(cors({
@@ -28,7 +32,6 @@ app.use(cors({
   credentials: true
 }));
 
-//var cookieSession = require("cookie-session");
 app.set('trust proxy', 1)
 
 /*app.use(
@@ -42,13 +45,25 @@ app.set('trust proxy', 1)
   )
 */
 
-app.use(Session({
+app.use(
+    cookieSession({
+      name: "__session",
+      keys: ["key1"],
+        maxAge: 24 * 60 * 60 * 100,
+        secure: true,
+        httpOnly: true,
+        sameSite: 'none'
+    })
+);
+
+/*app.use(Session({
     name: 'siwe-quickstart',
     secret: "siwe-quickstart-secret",
     resave: true,
     saveUninitialized: true,
     cookie: { secure: true, SameSite: 'none' }
 }));
+*/
 
 app.get('/nonce', async function (req, res) {
     req.session.nonce = generateNonce();
