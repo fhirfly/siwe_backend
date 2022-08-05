@@ -68,7 +68,6 @@ app.use(
 app.use(Session({
     key: 'session_cookie_user_auth',
     secret: 'mooncore',
-    store: sessionStore,
     resave: false,
     saveUninitialized: false,
     cookie: {
