@@ -73,7 +73,7 @@ app.use(Session({
     cookie: {
         SameSite: 'None',
         Secure: true,
-        path: ['/verify','/nonce'],
+        path: ['/','/verify','/nonce'],
         domain: 'siwe.fhirfly.io',
         httpOnly: false,
     }
