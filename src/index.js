@@ -24,6 +24,8 @@ redisClient.connect().catch(console.error)
 
 const app = express();
 app.use(express.json());
+app.use(cors());
+/*
 app.use(cors({
   origin: function(origin, callback){
     return callback(null, true);
@@ -31,6 +33,7 @@ app.use(cors({
   optionsSuccessStatus: 200,
   credentials: true
 }));
+*/
 
 app.set('trust proxy', true)
 
