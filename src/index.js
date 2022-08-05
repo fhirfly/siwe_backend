@@ -61,19 +61,19 @@ app.use(
     secret: "siwe-quickstart-secret",
     resave: true,
     saveUninitialized: true,
-    cookie: { secure: true, SameSite: 'none' }
+    cookie: { Secure: true, SameSite: 'None' }
 }));
 */
 
 app.use(Session({
-    key: 'session_cookie_user_auth',
+    key: 'siwe-quickstart',
     secret: 'mooncore',
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     cookie: {
-        SameSite: 'none',
+        SameSite: 'None',
         maxAge: 1000 * 60 * 60 * 60,
-        secure: true
+        Secure: true
     }
 }));
 
