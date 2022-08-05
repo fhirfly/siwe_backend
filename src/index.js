@@ -72,10 +72,10 @@ app.use(Session({
     saveUninitialized: true,
     cookie: {
         SameSite: 'None',
-        maxAge: 1000 * 60 * 60 * 60,
         Secure: true,
         path: '/',
         domain: '.siwe.fhirfly.io',
+        httpOnly: false,
     }
 }));
 
