@@ -45,6 +45,7 @@ app.set('trust proxy', true)
   )
 */
 
+/*
 app.use(
     cookieSession({
       name: "__session",
@@ -64,7 +65,7 @@ app.use(
 }));
 */
 
-app.use(session({
+app.use(Session({
     key: 'session_cookie_user_auth',
     secret: 'mooncore',
     store: sessionStore,
