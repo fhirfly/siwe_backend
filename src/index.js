@@ -24,7 +24,7 @@ redisClient.connect().catch(console.error)
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({credentials: false}));
 /*
 app.use(cors({
   origin: function(origin, callback){
