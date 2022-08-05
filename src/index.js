@@ -32,7 +32,7 @@ app.use(cors({
   credentials: true
 }));
 
-//app.set('trust proxy', true)
+app.set('trust proxy', true)
 
 /*app.use(
     Session({
@@ -73,10 +73,24 @@ app.use(Session({
     cookie: {
         SameSite: 'None',
         maxAge: 1000 * 60 * 60 * 60,
-        Secure: true
+        Secure: true,
+        path: '/',
+        domain: 'siwe.fhirfly.io',
     }
 }));
 
+/*app.use(Session({
+    key: 'siwe-quickstart',
+    secret: 'mooncore',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        SameSite: 'None',
+        maxAge: 1000 * 60 * 60 * 60,
+        Secure: true
+    }
+}));
+*/
 app.get('/nonce', async function (req, res) {
     req.session.nonce = generateNonce();
     res.setHeader('Content-Type', 'text/plain');
